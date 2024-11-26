@@ -27,19 +27,11 @@ authors:
 affiliations:
   - KC Machine Learning Lab
 bibtex: >
-  @article{doe2024superai,
-    author    = {Jane Doe and John Smith},
-    title     = {Unleashing the Power of Super AI: Transforming the Future of Technology},
-    journal   = {Journal of Superintelligent Systems},
-    year      = {2024},
-    volume    = {99},
-    number    = {1},
-    pages     = {1-42},
-    month     = {January},
-    keywords  = {Super AI, Machine Learning, Artificial Intelligence, Technological Innovation},
-    doi       = {10.9999/jsis.2024.001},
-    url       = {https://www.example.com/superai-article},
-    note      = {This paper sets the benchmark for future AI research and applications.}
+  @article{tvo_jude,
+    author    = {Tu Vo and Chan Y. Park},
+    title     = {Deep Joint Unrolling for Deblurring and Low-Light Image Enhancement (JUDE)},
+    booktitle={The IEEE/CVF Winter Conference on Applications of Computer Vision},
+    year={2025}
   }
 
 teaser: JUDE.png
