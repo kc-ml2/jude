@@ -29,8 +29,8 @@ bibtex: >
   @article{tvo_jude,
     author    = {Tu Vo and Chan Y. Park},
     title     = {Deep Joint Unrolling for Deblurring and Low-Light Image Enhancement (JUDE)},
-    booktitle={The IEEE/CVF Winter Conference on Applications of Computer Vision},
-    year={2025}
+    booktitle = {The IEEE/CVF Winter Conference on Applications of Computer Vision},
+    year      = {2025}
   }
 
 teaser: JUDE.png
