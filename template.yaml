@@ -13,7 +13,7 @@ resources:
 description: project page for jude (WACV'25)
 
 image: assets/JUDE.png
-url: https://denkiwakame.github.io/academic-project-template
+url: https://jude.kc-ml2.com
 speakerdeck: # speakerdeck slide ID
 authors:
   - name: Tu Vo
