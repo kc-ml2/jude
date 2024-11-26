@@ -1,0 +1,443 @@
+theme: default # default || dark
+organization: KC Machine Learning Lab
+twitter: '@tuvovan_'
+title: Deep Joint Unrolling for Deblurring and Low-Light Image Enhancement (JUDE)
+journal: "WACV'25"
+resources:
+  paper: # https://openreview.net/
+  arxiv: https://arxiv.org
+  code: https://github.com/denkiwakame/academic-project-template
+  # video: https://www.youtube.com/embed/onbnb_D1wC8?si=xJczUv716Lt5aO4l&amp;start=1150
+  # demo: https://colab.research.google.com/
+  # huggingface: https://huggingface.co/
+description: academic projectpage template that supports markdown and KaTeX
+
+image: assets/JUDE.png
+url: https://denkiwakame.github.io/academic-project-template
+speakerdeck: # speakerdeck slide ID
+authors:
+  - name: Tu Vo
+    affiliation: [1]
+    url: http://tuvovan.github.io/
+    position: intern
+  - name: Chan Y. Park
+    affiliation: [1]
+    position: Researcher
+    url: https://thispersondoesnotexist.com/
+affiliations:
+  - KC Machine Learning Lab
+bibtex: >
+  @article{doe2024superai,
+    author    = {Jane Doe and John Smith},
+    title     = {Unleashing the Power of Super AI: Transforming the Future of Technology},
+    journal   = {Journal of Superintelligent Systems},
+    year      = {2024},
+    volume    = {99},
+    number    = {1},
+    pages     = {1-42},
+    month     = {January},
+    keywords  = {Super AI, Machine Learning, Artificial Intelligence, Technological Innovation},
+    doi       = {10.9999/jsis.2024.001},
+    url       = {https://www.example.com/superai-article},
+    note      = {This paper sets the benchmark for future AI research and applications.}
+  }
+
+teaser: JUDE.png
+abstract: |
+  Low-light and blurring issues are prevalent when capturing photos at night, often due to the use of long exposure to address dim environments. 
+  Addressing these joint problems can be challenging and error-prone if an end-to-end model is trained without incorporating an appropriate physical model. 
+  In this paper, we introduce **JUDE**, a Deep **J**oint **U**nrolling for **D**eblurring and Low-Light Image **E**nhancement, 
+  inspired by the image physical model. Based on Retinex theory and the blurring model, the low-light blurry input is iteratively deblurred and decomposed, 
+  producing sharp low-light reflectance and illuminance through an unrolling mechanism. Additionally, we incorporate various modules to estimate the initial blur kernel, 
+  enhance brightness, and eliminate noise in the final image. 
+  Comprehensive experiments on LOL-Blur and Real-LOL-Blur demonstrate that our method outperforms existing techniques both quantitatively and qualitatively.
+body:
+  - title: Results
+    text: |
+      ## Synthesize Data
+      Scene 60 from the LEDNet Dataset
+
+      <div class="uk-position-relative" uk-slideshow="animation: fade">
+        <div class="uk-slideshow-items">
+            <div>
+                <img src="assets/0023_gt.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">GT</div>
+            </div>
+            <div>
+                <img src="assets/0023_our.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">JUDE</div>
+            </div>
+            <div>
+                <img src="assets/0023_input.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">Input</div>
+            </div>
+            <div>
+                <img src="assets/0023_led.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">LEDNet</div>
+            </div>
+            <div>
+                <img src="assets/0023_feli.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FELI</div>
+            </div>
+            <div>
+                <img src="assets/0023_fftformer_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FFTFormer -> RetinexFormer</div>
+            </div>
+            <div>
+                <img src="assets/0023_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/0023_fourlle_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FourLLE -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/0023_llformer_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">LLFormer -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/0023_mimo_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">MIMO -> RetinexFormer</div>
+            </div>
+            <div>
+                <img src="assets/0023_retinexformer_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">RetinexFormer -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/0023_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">RetinexFormer</div>
+            </div>
+        </div>
+
+        <div class="uk-position-bottom-center uk-position-small">
+            <ul class="uk-thumbnav">
+                <li uk-slideshow-item="0"><a href="#"><img src="assets/0023_gt.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="1"><a href="#"><img src="assets/0023_our.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="2"><a href="#"><img src="assets/0023_input.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="3"><a href="#"><img src="assets/0023_led.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="4"><a href="#"><img src="assets/0023_feli.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="5"><a href="#"><img src="assets/0023_fftformer_retinexformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="6"><a href="#"><img src="assets/0023_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="7"><a href="#"><img src="assets/0023_fourlle_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="8"><a href="#"><img src="assets/0023_llformer_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="9"><a href="#"><img src="assets/0023_mimo_retinexformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="10"><a href="#"><img src="assets/0023_retinexformer_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="11"><a href="#"><img src="assets/0023_retinexformer.png" width="50" height="67" alt=""></a></li>
+            </ul>
+        </div>
+      </div>
+
+      Scene 118 from the LEDNet Dataset
+
+      <div class="uk-position-relative" uk-slideshow="animation: fade">
+        <div class="uk-slideshow-items">
+            <div>
+                <img src="assets/0026_gt.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">GT</div>
+            </div>
+            <div>
+                <img src="assets/0026_our.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">JUDE</div>
+            </div>
+            <div>
+                <img src="assets/0026_input.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">Input</div>
+            </div>
+            <div>
+                <img src="assets/0026_led.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">LEDNet</div>
+            </div>
+            <div>
+                <img src="assets/0026_feli.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FELI</div>
+            </div>
+            <div>
+                <img src="assets/0026_fftformer_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FFTFormer -> RetinexFormer</div>
+            </div>
+            <div>
+                <img src="assets/0026_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/0026_fourll_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FourLLE -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/0026_llformer_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">LLFormer -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/0026_mino_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">MIMO -> RetinexFormer</div>
+            </div>
+            <div>
+                <img src="assets/0026_retinexformer_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">RetinexFormer -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/0026_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">RetinexFormer</div>
+            </div>
+        </div>
+
+        <div class="uk-position-bottom-center uk-position-small">
+            <ul class="uk-thumbnav">
+                <li uk-slideshow-item="0"><a href="#"><img src="assets/0026_gt.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="1"><a href="#"><img src="assets/0026_our.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="2"><a href="#"><img src="assets/0026_input.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="3"><a href="#"><img src="assets/0026_led.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="4"><a href="#"><img src="assets/0026_feli.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="5"><a href="#"><img src="assets/0026_fftformer_retinexformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="6"><a href="#"><img src="assets/0026_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="7"><a href="#"><img src="assets/0026_fourll_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="8"><a href="#"><img src="assets/0026_llformer_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="9"><a href="#"><img src="assets/0026_mino_retinexformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="10"><a href="#"><img src="assets/0026_retinexformer_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="11"><a href="#"><img src="assets/0026_retinexformer.png" width="50" height="67" alt=""></a></li>
+            </ul>
+        </div>
+      </div>
+
+      ## Real Data
+      Scene 205 from the Real Dataset
+
+      <div class="uk-position-relative" uk-slideshow="animation: fade">
+        <div class="uk-slideshow-items">
+            <div>
+                <img src="assets/205_blur_12.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">Input</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_our.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">JUDE</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_led.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">LEDNet</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_feli.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FELI</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_fftformer_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FFTFormer -> RetinexFormer</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_300001_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_fourll_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FourLLE -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_llformer_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">LLFormer -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_mimo_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">MIMO -> RetinexFormer</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_retinexformer_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">RetinexFormer -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">RetinexFormer</div>
+            </div>
+        </div>
+
+        <div class="uk-position-bottom-center uk-position-small">
+            <ul class="uk-thumbnav">
+              <li uk-slideshow-item="0"><a href="#"><img src="assets/205_blur_12.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="1"><a href="#"><img src="assets/205_blur_12_our.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="2"><a href="#"><img src="assets/205_blur_12_led.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="3"><a href="#"><img src="assets/205_blur_12_feli.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="4"><a href="#"><img src="assets/205_blur_12_fftformer_retinexformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="5"><a href="#"><img src="assets/205_blur_12_300001_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="6"><a href="#"><img src="assets/205_blur_12_fourll_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="7"><a href="#"><img src="assets/205_blur_12_llformer_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="8"><a href="#"><img src="assets/205_blur_12_mimo_retinexformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="9"><a href="#"><img src="assets/205_blur_12_retinexformer_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="10"><a href="#"><img src="assets/205_blur_12_retinexformer.png" width="50" height="67" alt=""></a></li>
+            </ul>
+        </div>
+      </div>
+
+      Scene C0326 from the Real Dataset
+
+      <div class="uk-position-relative" uk-slideshow="animation: fade">
+        <div class="uk-slideshow-items">
+            <div>
+                <img src="assets/C0326_0004_input.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">Input</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_our.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">JUDE</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_led.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">LEDNet</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_feli.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FELI</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_fftformer_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FFTFormer -> RetinexFormer</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_fourllie_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FourLLE -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_llformer_fftfomer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">LLFormer -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_mimo_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">MIMO -> RetinexFormer</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_retinexformer_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">RetinexFormer -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">RetinexFormer</div>
+            </div>
+        </div>
+
+        <div class="uk-position-bottom-center uk-position-small">
+            <ul class="uk-thumbnav">
+              <li uk-slideshow-item="0"><a href="#"><img src="assets/C0326_0004_input.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="1"><a href="#"><img src="assets/C0326_0004_our.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="2"><a href="#"><img src="assets/C0326_0004_led.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="3"><a href="#"><img src="assets/C0326_0004_feli.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="4"><a href="#"><img src="assets/C0326_0004_fftformer_retinexformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="5"><a href="#"><img src="assets/C0326_0004_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="6"><a href="#"><img src="assets/C0326_0004_fourllie_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="7"><a href="#"><img src="assets/C0326_0004_llformer_fftfomer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="8"><a href="#"><img src="assets/C0326_0004_mimo_retinexformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="9"><a href="#"><img src="assets/C0326_0004_retinexformer_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="10"><a href="#"><img src="assets/C0326_0004_retinexformer.png" width="50" height="67" alt=""></a></li>
+            </ul>
+        </div>
+      </div>
+
+      Refer to [UIKit Video Components Documentation](https://getuikit.com/docs/video) and [Grid system](https://getuikit.com/docs/grid)
+      <div class="uk-child-width-1-3@m" uk-grid>
+        <div>
+          <video
+            src="https://yootheme.com/site/images/media/yootheme-pro.mp4"
+            loop
+            muted
+            uk-video="autoplay:inview"
+            />
+        </div>
+        <div>
+          <video
+            src="https://yootheme.com/site/images/media/yootheme-pro.mp4"
+            loop
+            muted
+            uk-video="autoplay:inview"
+            />
+        </div>
+        <div>
+          <video
+            src="https://yootheme.com/site/images/media/yootheme-pro.mp4"
+            loop
+            muted
+            uk-video="autoplay:inview"
+            />
+        </div>
+      </div>
+  - title: Markdown examples
+    text: |
+      Here's our demo text showcasing the power of markdown and KaTeX integration!
+      Markdown allows you to easily format text using simple syntax.
+      - **bold**
+      - *italic*
+      - `inline code`.
+
+      You can also create headings of various levels:
+      # Heading Level 1
+      ## Heading Level 2
+      ### Heading Level 3
+      #### Heading Level 4
+      Markdown allows you to create tables like the following:
+      ### Fictitious AI Benchmark Results
+      | Model Name          | Accuracy (%) | Inference Time (ms) |
+      |---------------------|--------------|---------------------|
+      | TransGPT-XT         | 96.3         | $\infty$                 |
+      | GigaBERT Prime      | 94.7         | 9.5                 |
+      | MegaLSTM-Pro        | 92.5         | 10.1                |
+      | UltraTransformer    | 97.1         | 7.8                 |
+      | **QuantumDNN-ALPHA**    | 95.8         | 8.5             |
+
+      Of course, you can also directly write tables in HTML if needed. For more details, refer to the [UIKit Table documentation](https://getuikit.com/docs/table).
+
+      <div class="uk-overflow-auto uk-width-1-1">
+        <table class="uk-table uk-table-small uk-text-small uk-table-divider">
+          <thead>
+            <tr>
+              <th>Model Name</th>
+              <th>Accuracy (%)</th>
+              <th>Inference Time (ms)</th>
+              <th>Memory Usage (MB)</th>
+              <th>Training Time (hours)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>TransGPT-XT<br/>GigaBERT Prime</td>
+              <td>96.3<br/>94.7</td>
+              <td>8.2<br/>9.5</td>
+              <td>1200<br/>1100</td>
+              <td>36<br/>48</td>
+            </tr>
+            <tr>
+              <td>MegaLSTM-Pro<br/>UltraTransformer</td>
+              <td>92.5<br/>97.1</td>
+              <td>10.1<br/>7.8</td>
+              <td>1050<br/>1300</td>
+              <td>56<br/>42</td>
+            </tr>
+            <tr class="uk-active">
+              <td>QuantumDNN-ALPHA</td>
+              <td>95.8</td>
+              <td>8.5</td>
+              <td>1250</td>
+              <td>50</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  - title: KaTeX examples
+    text: >
+      $\KaTeX$ enables you to write mathematical expressions beautifully within your text (e.g. $\alpha$, $\beta$, $\gamma$ ).
+      $$ax^2 + bx + c = 0$$
+      $$ \int \oint \sum \prod $$
+      $$ \begin{CD} A @>a>> B \\ @VbVV @AAcA \\ C @= D \end{CD} $$
+      [KaTeX supports a wide range of mathematical symbols and equations](https://katex.org/docs/support_table.html), ensuring your technical content is both clear and visually appealing.
+      With markdown for text formatting and KaTeX for mathematical expressions, our template empowers you to communicate complex ideas effectively. Whether you're writing a scientific paper or a technical blog post, harnessing these tools will elevate your content and engage your readers.
+projects: # relevant projects
+  - title: Relevant Project I
+    description: abstract text
+    img: assets/teaser.png
+    journal: "ABCD'23"
+    url: https://denkiwakame.github.io/academic-project-template/
+  - title: Relvant Project II
+    description: abstract text
+    img: assets/teaser.png
+    journal: "EFGR'22"
+    url: https://denkiwakame.github.io/academic-project-template/

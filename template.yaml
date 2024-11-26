@@ -1,0 +1,378 @@
+theme: default # default || dark
+organization: KC Machine Learning Lab
+twitter: '@tuvovan_'
+title: Deep Joint Unrolling for Deblurring and Low-Light Image Enhancement (JUDE)
+journal: "WACV'25"
+resources:
+  paper: # https://openreview.net/
+  arxiv: https://arxiv.org
+  code: https://github.com/denkiwakame/academic-project-template
+  # video: https://www.youtube.com/embed/onbnb_D1wC8?si=xJczUv716Lt5aO4l&amp;start=1150
+  # demo: https://colab.research.google.com/
+  # huggingface: https://huggingface.co/
+description: academic projectpage template that supports markdown and KaTeX
+
+image: assets/JUDE.png
+url: https://denkiwakame.github.io/academic-project-template
+speakerdeck: # speakerdeck slide ID
+authors:
+  - name: Tu Vo
+    affiliation: [1]
+    url: http://tuvovan.github.io/
+    position: intern
+  - name: Chan Y. Park
+    affiliation: [1]
+    position: Researcher
+    url: https://thispersondoesnotexist.com/
+affiliations:
+  - KC Machine Learning Lab
+bibtex: >
+  @article{doe2024superai,
+    author    = {Jane Doe and John Smith},
+    title     = {Unleashing the Power of Super AI: Transforming the Future of Technology},
+    journal   = {Journal of Superintelligent Systems},
+    year      = {2024},
+    volume    = {99},
+    number    = {1},
+    pages     = {1-42},
+    month     = {January},
+    keywords  = {Super AI, Machine Learning, Artificial Intelligence, Technological Innovation},
+    doi       = {10.9999/jsis.2024.001},
+    url       = {https://www.example.com/superai-article},
+    note      = {This paper sets the benchmark for future AI research and applications.}
+  }
+
+teaser: JUDE.png
+abstract: |
+  Low-light and blurring issues are prevalent when capturing photos at night, often due to the use of long exposure to address dim environments. 
+  Addressing these joint problems can be challenging and error-prone if an end-to-end model is trained without incorporating an appropriate physical model. 
+  In this paper, we introduce **JUDE**, a Deep **J**oint **U**nrolling for **D**eblurring and Low-Light Image **E**nhancement, 
+  inspired by the image physical model. Based on Retinex theory and the blurring model, the low-light blurry input is iteratively deblurred and decomposed, 
+  producing sharp low-light reflectance and illuminance through an unrolling mechanism. Additionally, we incorporate various modules to estimate the initial blur kernel, 
+  enhance brightness, and eliminate noise in the final image. 
+  Comprehensive experiments on LOL-Blur and Real-LOL-Blur demonstrate that our method outperforms existing techniques both quantitatively and qualitatively.
+body:
+  - title: Results
+    text: |
+      ## Synthesize Data
+      Scene 60 from the LOLBlur Dataset
+
+      <div class="uk-position-relative" uk-slideshow="animation: fade">
+        <div class="uk-slideshow-items">
+            <div>
+                <img src="assets/0023_gt.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">GT</div>
+            </div>
+            <div>
+                <img src="assets/0023_our.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">JUDE</div>
+            </div>
+            <div>
+                <img src="assets/0023_input.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">Input</div>
+            </div>
+            <div>
+                <img src="assets/0023_led.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">LEDNet</div>
+            </div>
+            <div>
+                <img src="assets/0023_feli.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FELI</div>
+            </div>
+            <div>
+                <img src="assets/0023_fftformer_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FFTFormer -> RetinexFormer</div>
+            </div>
+            <div>
+                <img src="assets/0023_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/0023_fourlle_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FourLLE -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/0023_llformer_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">LLFormer -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/0023_mimo_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">MIMO -> RetinexFormer</div>
+            </div>
+            <div>
+                <img src="assets/0023_retinexformer_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">RetinexFormer -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/0023_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">RetinexFormer</div>
+            </div>
+        </div>
+
+        <div class="uk-position-bottom-center uk-position-small">
+            <ul class="uk-thumbnav">
+                <li uk-slideshow-item="0"><a href="#"><img src="assets/0023_gt.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="1"><a href="#"><img src="assets/0023_our.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="2"><a href="#"><img src="assets/0023_input.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="3"><a href="#"><img src="assets/0023_led.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="4"><a href="#"><img src="assets/0023_feli.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="5"><a href="#"><img src="assets/0023_fftformer_retinexformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="6"><a href="#"><img src="assets/0023_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="7"><a href="#"><img src="assets/0023_fourlle_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="8"><a href="#"><img src="assets/0023_llformer_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="9"><a href="#"><img src="assets/0023_mimo_retinexformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="10"><a href="#"><img src="assets/0023_retinexformer_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="11"><a href="#"><img src="assets/0023_retinexformer.png" width="50" height="67" alt=""></a></li>
+            </ul>
+        </div>
+      </div>
+
+      Scene 118 from the LOLBlur Dataset
+
+      <div class="uk-position-relative" uk-slideshow="animation: fade">
+        <div class="uk-slideshow-items">
+            <div>
+                <img src="assets/0026_gt.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">GT</div>
+            </div>
+            <div>
+                <img src="assets/0026_our.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">JUDE</div>
+            </div>
+            <div>
+                <img src="assets/0026_input.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">Input</div>
+            </div>
+            <div>
+                <img src="assets/0026_led.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">LEDNet</div>
+            </div>
+            <div>
+                <img src="assets/0026_feli.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FELI</div>
+            </div>
+            <div>
+                <img src="assets/0026_fftformer_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FFTFormer -> RetinexFormer</div>
+            </div>
+            <div>
+                <img src="assets/0026_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/0026_fourll_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FourLLE -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/0026_llformer_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">LLFormer -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/0026_mino_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">MIMO -> RetinexFormer</div>
+            </div>
+            <div>
+                <img src="assets/0026_retinexformer_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">RetinexFormer -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/0026_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">RetinexFormer</div>
+            </div>
+        </div>
+
+        <div class="uk-position-bottom-center uk-position-small">
+            <ul class="uk-thumbnav">
+                <li uk-slideshow-item="0"><a href="#"><img src="assets/0026_gt.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="1"><a href="#"><img src="assets/0026_our.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="2"><a href="#"><img src="assets/0026_input.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="3"><a href="#"><img src="assets/0026_led.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="4"><a href="#"><img src="assets/0026_feli.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="5"><a href="#"><img src="assets/0026_fftformer_retinexformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="6"><a href="#"><img src="assets/0026_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="7"><a href="#"><img src="assets/0026_fourll_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="8"><a href="#"><img src="assets/0026_llformer_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="9"><a href="#"><img src="assets/0026_mino_retinexformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="10"><a href="#"><img src="assets/0026_retinexformer_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="11"><a href="#"><img src="assets/0026_retinexformer.png" width="50" height="67" alt=""></a></li>
+            </ul>
+        </div>
+      </div>
+
+      ## Real Data
+      Scene 205 from the Real-Blur Dataset
+
+      <div class="uk-position-relative" uk-slideshow="animation: fade">
+        <div class="uk-slideshow-items">
+            <div>
+                <img src="assets/205_blur_12.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">Input</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_our.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">JUDE</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_led.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">LEDNet</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_feli.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FELI</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_fftformer_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FFTFormer -> RetinexFormer</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_300001_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_fourll_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FourLLE -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_llformer_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">LLFormer -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_mimo_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">MIMO -> RetinexFormer</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_retinexformer_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">RetinexFormer -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/205_blur_12_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">RetinexFormer</div>
+            </div>
+        </div>
+
+        <div class="uk-position-bottom-center uk-position-small">
+            <ul class="uk-thumbnav">
+              <li uk-slideshow-item="0"><a href="#"><img src="assets/205_blur_12.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="1"><a href="#"><img src="assets/205_blur_12_our.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="2"><a href="#"><img src="assets/205_blur_12_led.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="3"><a href="#"><img src="assets/205_blur_12_feli.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="4"><a href="#"><img src="assets/205_blur_12_fftformer_retinexformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="5"><a href="#"><img src="assets/205_blur_12_300001_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="6"><a href="#"><img src="assets/205_blur_12_fourll_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="7"><a href="#"><img src="assets/205_blur_12_llformer_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="8"><a href="#"><img src="assets/205_blur_12_mimo_retinexformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="9"><a href="#"><img src="assets/205_blur_12_retinexformer_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="10"><a href="#"><img src="assets/205_blur_12_retinexformer.png" width="50" height="67" alt=""></a></li>
+            </ul>
+        </div>
+      </div>
+
+      Scene C0326 from the Real-Blur Dataset
+
+      <div class="uk-position-relative" uk-slideshow="animation: fade">
+        <div class="uk-slideshow-items">
+            <div>
+                <img src="assets/C0326_0004_input.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">Input</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_our.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">JUDE</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_led.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">LEDNet</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_feli.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FELI</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_fftformer_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FFTFormer -> RetinexFormer</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_fourllie_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">FourLLE -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_llformer_fftfomer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">LLFormer -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_mimo_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">MIMO -> RetinexFormer</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_retinexformer_fftformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">RetinexFormer -> FFTFormer</div>
+            </div>
+            <div>
+                <img src="assets/C0326_0004_retinexformer.png" alt="" uk-cover>
+                <div class="uk-overlay uk-overlay-primary uk-position-top-right uk-light">RetinexFormer</div>
+            </div>
+        </div>
+
+        <div class="uk-position-bottom-center uk-position-small">
+            <ul class="uk-thumbnav">
+              <li uk-slideshow-item="0"><a href="#"><img src="assets/C0326_0004_input.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="1"><a href="#"><img src="assets/C0326_0004_our.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="2"><a href="#"><img src="assets/C0326_0004_led.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="3"><a href="#"><img src="assets/C0326_0004_feli.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="4"><a href="#"><img src="assets/C0326_0004_fftformer_retinexformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="5"><a href="#"><img src="assets/C0326_0004_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="6"><a href="#"><img src="assets/C0326_0004_fourllie_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="7"><a href="#"><img src="assets/C0326_0004_llformer_fftfomer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="8"><a href="#"><img src="assets/C0326_0004_mimo_retinexformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="9"><a href="#"><img src="assets/C0326_0004_retinexformer_fftformer.png" width="50" height="67" alt=""></a></li>
+                <li uk-slideshow-item="10"><a href="#"><img src="assets/C0326_0004_retinexformer.png" width="50" height="67" alt=""></a></li>
+            </ul>
+        </div>
+      </div>
+
+  - title: Performance Metrics
+    text: |
+      
+      ### Benchmarking the LOL-Blur Dataset.
+      | Model Name                     | PSNR &uarr;  | SSIM &uarr; | LPIPS &darr;|
+      |--------------------------------|--------------|-------------|------------ |
+      | FourLLIE &rarr; FFTFormer      | 18.433       | 0.705       |0.305        |
+      | LLFormer &rarr; FFTFormer      | 20.290       | 0.792       |0.212        |
+      | RetinexFormer &rarr; FFTFormer | 16.452       | 0.702       |0.324        |
+      | MIMO  &rarr; RetinexFormer     | 17.024       | 0.770       |0.271        |
+      | FFTFormer &rarr; RetinexFormer | 16.712       | 0.728       |0.325        |
+      |         FFTFormer              | 19.889       | 0.858       |0.139        |
+      |         RetinexFormer          | 25.505       | 0.862       |0.240        |
+      |         LEDNet                 | 25.740       | 0.850       |0.224        |
+      |         FELI                   | 26.728       | 0.914       |0.132        |
+      |         **JUDE**               | **26.884**   | **0.932**   |**0.127**    |
+
+      ### Benchmarking the Real-Blur Dataset.
+      | Model Name                     | ARNIQA &uarr;  | CONTRIQUE &uarr; | LIQE &uarr;| MUSIQ &uarr;| CLIPIQA &uarr;| DBCNN &uarr;|
+      |--------------------------------|----------------|------------------|------------|------------ |-------------- |------------ |
+      | FourLLIE &rarr; FFTFormer      | 0.307          | 46.823           |1.113       |30.840       |0.217          |0.261        | 
+      | LLFormer &rarr; FFTFormer      | 0.401          | 44.743           |1.158       |36.534       |0.208          |0.257        | 
+      | RetinexFormer &rarr; FFTFormer | 0.364          | 41.495           |1.075       |34.793       |0.227          |0.279        | 
+      | MIMO  &rarr; RetinexFormer     | 0.413          | 40.773           |1.137       |33.242       |0.207          |0.276        | 
+      | FFTFormer &rarr; RetinexFormer | 0.405          | 48.814           |1.195       |35.511       |0.221          |0.303        | 
+      |         FFTFormer              | 0.402          | 38.005           |1.141       |32.079       |0.289          |0.307        | 
+      |         RetinexFormer          | 0.418          | 43.410           |1.074       |31.782       |0.187          |0.232        | 
+      |         LEDNet                 | 0.419          | 49.828           |1.414       |43.623       |0.281          |0.306        | 
+      |         FELI                   | 0.429          | 42.354           |1.155       |33.669       |0.207          |0.239        | 
+      |         **JUDE**               | **0.437**      | **50.207**       |**1.454**   |**44.732**   |**0.299**      |**0.313**    | 
+      
+projects: # relevant projects
+  - title: Relevant Project I
+    description: abstract text
+    img: assets/teaser.png
+    journal: "ABCD'23"
+    url: https://denkiwakame.github.io/academic-project-template/
+  - title: Relvant Project II
+    description: abstract text
+    img: assets/teaser.png
+    journal: "EFGR'22"
+    url: https://denkiwakame.github.io/academic-project-template/
