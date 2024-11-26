@@ -10,7 +10,7 @@ resources:
   # video: https://www.youtube.com/embed/onbnb_D1wC8?si=xJczUv716Lt5aO4l&amp;start=1150
   # demo: https://colab.research.google.com/
   # huggingface: https://huggingface.co/
-description: academic projectpage template that supports markdown and KaTeX
+description: project page for jude (WACV'25)
 
 image: assets/JUDE.png
 url: https://denkiwakame.github.io/academic-project-template
