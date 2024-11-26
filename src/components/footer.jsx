@@ -9,18 +9,6 @@ export default class Footer extends React.Component {
   render() {
     return (
       <div className="uk-text-center uk-text-small">
-        {/* <span>
-          This template is provided under the
-          <a
-            href="https://creativecommons.org/licenses/by-sa/4.0/"
-            target="_blank"
-          >
-            {' '}
-            Attribution-ShareAlike 4.0 International (CC BY-SA 4.0){' '}
-          </a>
-          license.
-        </span>
-        <br /> */}
         <span>
           &copy; Copyright 2024{' '}
           <a
