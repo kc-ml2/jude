@@ -1,5 +1,8 @@
-# Academic Projectpage Template
-[![build](https://github.com/denkiwakame/academic-project-template/actions/workflows/build.yaml/badge.svg)](https://github.com/denkiwakame/academic-project-template/actions/workflows/build.yaml) [![build](https://github.com/denkiwakame/academic-project-template/actions/workflows/lint.yaml/badge.svg)](https://github.com/denkiwakame/academic-project-template/actions/workflows/lint.yaml)
+# Deep Joint Unrolling for Deblurring and Low-Light Image Enhancement (JUDE) - WACV 2025
+
+![alt text](src/media/JUDE.png)
+
+<!-- [![build](https://github.com/denkiwakame/academic-project-template/actions/workflows/build.yaml/badge.svg)](https://github.com/denkiwakame/academic-project-template/actions/workflows/build.yaml) [![build](https://github.com/denkiwakame/academic-project-template/actions/workflows/lint.yaml/badge.svg)](https://github.com/denkiwakame/academic-project-template/actions/workflows/lint.yaml)
 [![license](https://img.shields.io/badge/LICENSE-CC--BY--SA4.0-important.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 - An academic project page template powered by [React](https://ja.reactjs.org/) + [UIKit](https://getuikit.com/), w/ markdown and KaTeX support !
 - **Demo**: ⛅[default-theme](https://denkiwakame.github.io/academic-project-template)
@@ -146,4 +149,4 @@ body:
 - Select `GitHub Actions` at **Build and Deployment > Source**
 - `$ git remote add origin {your-github-repo-path}`
 - `$ git push origin main`
-- See also: [GitHub Documentation](https://docs.github.com/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) and [actions/deploy-pages](https://github.com/actions/deploy-pages)
+- See also: [GitHub Documentation](https://docs.github.com/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) and [actions/deploy-pages](https://github.com/actions/deploy-pages) -->
