@@ -6,7 +6,7 @@ journal: "WACV'25"
 resources:
   paper: # https://openreview.net/
   arxiv: https://arxiv.org
-  code: https://github.com/denkiwakame/academic-project-template
+  code: https://github.com/kc-ml2/jude
   # video: https://www.youtube.com/embed/onbnb_D1wC8?si=xJczUv716Lt5aO4l&amp;start=1150
   # demo: https://colab.research.google.com/
   # huggingface: https://huggingface.co/
@@ -19,11 +19,10 @@ authors:
   - name: Tu Vo
     affiliation: [1]
     url: http://tuvovan.github.io/
-    position: intern
+    position: Research Scientist
   - name: Chan Y. Park
     affiliation: [1]
-    position: Researcher
-    url: https://thispersondoesnotexist.com/
+    position: Principle Research Scientist
 affiliations:
   - KC Machine Learning Lab
 bibtex: >
