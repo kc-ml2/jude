@@ -1,0 +1,185 @@
+# general settings
+name: UnfoldingNet
+model_type: UnfoldingNet
+num_gpu: 2
+manual_seed: 10
+option_path: /home/tuvv/workspaces/low-light/options/train.yml
+
+# dataset and data loader settings
+datasets:
+  train:
+    phase: train
+    dataset: led
+    name: LOLBlurDataset_Train
+    type: PairedImageDataset
+    dataroot_gt: data/train/gt
+    dataroot_lq: data/train/low_blur_noise
+    # dataroot_lq_noise: data/train/low_blur_noise
+    dataroot_kernel: data/kernel
+    filename_tmpl: '{}'
+    io_backend:
+      type: disk
+
+    mean: [0.5, 0.5, 0.5]
+    std: [0.5, 0.5, 0.5]
+    use_flip: true
+    use_rot: true
+    crop_size: 512
+
+    use_shuffle: true
+    batch_size_per_gpu: &bsz 4
+    num_worker_per_gpu: 4
+    dataset_enlarge_ratio: 100
+    prefetch_mode: ~
+
+    prefetch_mode: cpu
+    num_prefetch_queue: 4
+
+  val:
+    phase: val
+    dataset: led # can be our/led or ourpsf02
+    name: LOLBlurDataset_Test
+    type: PairedImageDataset
+    dataroot_gt: /home/tuvv/workspaces/BOWNet_old/data/test/gt
+    dataroot_lq: /home/tuvv/workspaces/BOWNet_old/data/test/low_blur
+    dataroot_kernel: /home/tuvv/workspaces/BOWNet_old/data/kernel
+    io_backend:
+      type: disk
+
+    mean: [0.5, 0.5, 0.5]
+    std: [0.5, 0.5, 0.5]
+  
+  test:
+    phase: test
+    dataset: led # can be our/led or ourpsf02
+    name: LOLBlurDataset_Test
+    type: PairedImageDataset
+    dataroot_gt: /home/tuvv/workspaces/BOWNet_old/data/test/gt
+    dataroot_lq: /home/tuvv/workspaces/BOWNet_old/data/test/low_blur
+    dataroot_kernel: /home/tuvv/workspaces/BOWNet_old/data/kernel
+    io_backend:
+      type: disk
+
+    mean: [0.5, 0.5, 0.5]
+    std: [0.5, 0.5, 0.5]
+
+# network structures
+network:
+  type: BOWNet
+  stages: 5
+  denoiser: 
+    name: 'ResUNet'
+    in: 3
+    out: 3
+    nb: 2 # number of blocks
+  connection: false
+
+network_d:
+  type: NLayerDiscriminator
+  input_nc: 3
+  ndf: 64
+  n_layers: 3
+
+# path
+path:
+  save: 'model_zoo/BOWNet_kernel_prediction_model_v10'
+  pretrain_network_g: ~
+  strict_load_g: true
+  resume_state: ~
+
+# training settings
+train:
+  optim_g:
+    type: Adam
+    lr: !!float 1e-4
+    weight_decay: 0
+    betas: [0.9, 0.99]
+  optim_d:
+    type: Adam
+    lr: !!float 1e-5
+    weight_decay: 0
+    betas: [0.9, 0.99]
+
+  resume: 
+    finetune: false
+    state: true
+  # scheduler:
+  #   type: MultiStepLR
+  #   milestones: [200000, 300000, 400000, 450000]
+  #   gamma: 0.5
+
+  scheduler:
+    type: CosineAnnealingRestartLR
+    periods: [100000, 150000, 180000, 220000]
+    restart_weights: [1, 0.5, 0.5, 0.5]
+    eta_min: !!float 1e-7
+
+  total_iter: 240000
+  warmup_iter: -1  # no warm up
+
+  # losses
+  pixel_opt:
+    type: L1Loss
+    loss_weight: 1.0
+    reduction: mean
+
+  perceptual_opt:
+    type: PerceptualLoss
+    layer_weights:
+      # before relu
+      'conv1_2': 1
+      'conv2_2': 1
+      'conv3_4': 1
+      'conv4_4': 1
+    vgg_type: vgg19
+    use_input_norm: true
+    perceptual_weight: 0.01
+    style_weight: 0
+    range_norm: true
+    criterion: l1
+
+  gan_opt:
+    type: GANLoss
+    gan_type: vanilla
+    real_label_val: 1.0
+    fake_label_val: 0.0
+    loss_weight: 0.1
+
+  use_side_loss: true
+  side_loss_weight: 0.8
+  init_weights: false
+    
+  net_d_iters: 1
+  net_d_start_iter: 40001
+
+# validation settings
+val:
+  val_freq: !!float 2
+  save_img:
+    state: true
+    save_folder: test_results/BOWNet_MAE_denoiser_model_v9_512_check_weight
+  checkpoint: last
+
+  metrics:
+    psnr: # metric name, can be arbitrary
+      type: calculate_psnr
+      crop_border: 0
+      test_y_channel: false
+    ssim:
+      type: calculate_ssim
+      crop_border: 0
+      test_y_channel: false
+
+# logging settings
+logger:
+  print_freq: 100
+  save_checkpoint_freq: !!float 2e4
+  use_tb_logger: true
+  wandb:
+    project: ~
+    resume_id: ~
+
+# dist training settings
+dist_params:
+  backend: nccl
+  port: 29521
